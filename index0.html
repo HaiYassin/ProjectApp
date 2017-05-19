@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="app">
+<head>
+
+  <!-- Required meta tags-->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>Todo List</title>
+  <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css"> -->
+  <!-- Path to Framework7 iOS CSS theme styles-->
+  <link rel="stylesheet" type="text/css" href="css/framework7.ios.min.css">
+  <!-- Path to Framework7 iOS related color styles -->
+  <link rel="stylesheet" type="text/css" href="css/framework7.ios.colors.min.css">
+  <!-- Path to your custom app styles-->
+  <link rel="stylesheet" type="text/css" href="css/my-app.css">
+
+</head>
+      <body>
+          <!-- <header>
+              <h1 style="text-align:center;"></h1>
+           </header> -->
+          <!-- <section ng-controller="todoCtrl" style="max-width: 400px; margin: auto;">
+              <form id="todo-form" ng-submit="addTodo()">
+                <div class="content-block-title">Todo List v{{ 1 * 1 }}</div>
+                  <div class="list-block">
+                  <ul>
+                    <!-- Text inputs -->
+                    <!-- <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon f7-icons">person</i></div>
+                        <div class="item-inner">
+                          <div class="item-title label">Name</div>
+                          <div class="item-input">
+                            <input type="text" id="new-todo" placeholder="Que devez-vous faire ?" ng-model="newTodo" id="titleIn" style="width:100%; border-top: none; border-left: none;"/>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    ...
+                  </ul>
+                </div> -->
+
+
+
+                  <!-- <p style="margin-top:10px">
+                  <input type="date" ng-model="dateTodo" id="dateIn"  style="width:50%; text-align:center; border-radius: 5px;">
+                  <input type="time" ng-model="heureTodo" id="heureIn"  style="width:49%; text-align:center; border-radius: 5px;"></p>
+                  <p class="buttons-row"><button ng-submit"addTodo()" class="button button-big button-fill button-raised color-green"> + </button></p>
+              </form>
+              <article ng-show="todos.length">
+                  <div id="todo-list">
+                      <div ng-repeat="todo in todos" ng-class="{completed: todo.completed}">
+                          <div class="view">
+                              <input class="mark" type="checkbox" ng-model="todo.completed" />
+                              <span>{{todo.title}}, à faire pour le : {{todo.date | date:'dd/MM/yyyy'}}, {{todo.heure | date:'h:mma'}}</span>
+                              <span class="close" ng-click="removeTodo(todo)">x</span>
+                          </div>
+                      </div>
+                  </div>
+                  <p style="margin-top:30px;text-align: center;">
+                  <input id="mark-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)" />
+                  <label class="btn btn-info" for="mark-all">Tout cocher</label>
+                  <button class="btn btn-danger" ng-click="clearCompletedTodos()">Supprimer les tâches cochées</button></p>
+              </article>
+          </section> -->
+
+
+  <body>
+      <!-- Status bar overlay for full screen mode (PhoneGap) -->
+      <div class="statusbar-overlay"></div>
+      <!-- Panels overlay-->
+      <div class="panel-overlay"></div>
+      <!-- Left panel with reveal effect-->
+      <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+          <p>Left panel content goes here</p>
+        </div>
+      </div>
+      <!-- Views -->
+      <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+          <!-- Top Navbar-->
+          <div class="navbar">
+            <div class="navbar-inner">
+              <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+              <div class="center sliding">Todo List v{{ 1 * 1 }}</div>
+              <div class="right">
+                <!--
+                  Right link contains only icon - additional "icon-only" class
+                  Additional "open-panel" class tells app to open panel when we click on this link
+                -->
+                <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+          <div class="pages navbar-through toolbar-through">
+            <!-- Page, "data-page" contains page name -->
+            <div data-page="index" class="page">
+              <!-- Scrollable page content -->
+              <div class="page-content">
+                <!-- <p>Page content goes here</p> -->
+                <!-- Link to another page -->
+                <!-- <a href="about.html">About app</a> -->
+                <!-- <section ng-controller="todoCtrl" style="max-width: 400px; margin: auto;"> -->
+
+
+                <div class="content-block">
+                <div class="row">
+                  <div class="col-100 tablet-40">
+                    <section ng-controller="todoCtrl">
+                    <form id="todo-form" ng-submit="addTodo()">
+                      <!-- <div class="content-block-title">Todo List v{{ 1 * 1 }}</div> -->
+                        <div class="list-block">
+                        <ul>
+                          <!-- Text inputs -->
+                          <li>
+                            <div class="item-content">
+                              <!-- <div class="item-media"><i class="icon f7-icons">person</i></div> -->
+                              <div class="item-inner">
+                                <!-- <div class="item-title label">Name</div> -->
+                                <div class="item-input">
+                                  <input type="text" id="new-todo" placeholder="Que devez-vous faire ?" ng-model="newTodo" id="titleIn" style="text-align:center;width:100%; border-top: none; border-left: none;"/>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="item-content">
+                              <!-- <div class="item-media"><i class="icon f7-icons">calendar</i></div> -->
+                              <div class="item-inner">
+                                <!-- <div class="item-title label">Birth date</div> -->
+                                <div class="item-input">
+                                  <input type="date" ng-model="dateTodo" id="dateIn" style="text-align:center;" >
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="item-content">
+                              <!-- <div class="item-media"><i class="icon f7-icons">calendar</i></div> -->
+                              <div class="item-inner">
+                                <!-- <div class="item-title label">Birth date</div> -->
+                                <div class="item-input">
+                                  <input type="time" ng-model="heureTodo" id="heureIn" style="text-align:center;">
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <p class="buttons-row"><button ng-submit"addTodo()" class="button button-big button-fill button-raised color-green"> + </button></p>
+                    </form>
+
+                    <article ng-show="todos.length">
+                        <div id="todo-list">
+                            <div ng-repeat="todo in todos" ng-class="{completed: todo.completed}">
+                                <div class="view">
+                                    <input class="mark" type="checkbox" ng-model="todo.completed" />
+                                    <span>{{todo.title}}, à faire pour le : {{todo.date | date:'dd/MM/yyyy'}}, {{todo.heure | date:'h:mma'}}</span>
+                                    <span class="close" ng-click="removeTodo(todo)">x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="margin-top:30px;text-align: center;">
+                        <input id="mark-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)" />
+                        <label class="btn btn-info" for="mark-all">Tout cocher</label>
+                        <button class="btn btn-danger" ng-click="clearCompletedTodos()">Supprimer les tâches cochées</button></p>
+                    </article>
+                </section>
+
+
+
+              </div>
+
+              <div class="col-20"></div>
+            </div>
+            </div>
+          </div>
+          <!-- Bottom Toolbar-->
+          <div class="toolbar">
+            <div class="toolbar-inner">
+              <!-- Toolbar links -->
+              <a href="#" class="link">Link 1</a>
+              <a href="#" class="link">Link 2</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- Insert link to app.js here -->
+      <script src="scripts/angular.min.js"></script>
+      <script src="app/app.js"></script>
+
+      <!-- Path to your app js-->
+      <script src="scripts/my-app.js"></script>
+      <!-- Path to Framework7 Library JS-->
+      <script src="scripts/Framework7.min.js"></script>
+
+    <!-- Controller -->
+      <script src="app/controllers/todoCtrl.js"></script>
+
+      <script type="text/javascript">
+
+      var id = 0;
+
+      var monobjet  = {
+        id : id,
+        title : "{{todo.title}}",
+        date: "{{todo.date}}",
+        heure: "{{todo.heure}}"
+      };
+      var json = JSON.stringify(monobjet);
+
+      console.log(json); //Cette ligne affiche le texte {prenom:Marc,nom:Ford}.
+      </script>
+
+    </body>
+  </html>
+
+
+
+
+
+  <!-- Insert link to app.js here -->
+  <script src="scripts/angular.min.js"></script>
+  <script src="app/app.js"></script>
+
+  <!-- Framework7 -->
+  <script src="scripts/my-app.js"></script>
+  <script src="scripts/Framework7.min.js"></script>
+
+<!-- Controller -->
+  <script src="app/controllers/todoCtrl.js"></script>
+
+</body>
+</html>
